@@ -1,0 +1,13 @@
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/vo/Doctor.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/service/impl/DoctorServiceImpl.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/service/impl/UserServiceImpl.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/service/IDoctorService.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/config/MysqlGenerator.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/provider/AccountProvider.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/dao/UserMapper.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/config/BaseEntity.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/service/IUserService.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/provider/DoctorProvider.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/ApiSerApplication.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/vo/User.java
+/Users/houzy/Desktop/gitProject/consul/entityService/apiSer/src/main/java/com/cs/apiSer/dao/DoctorMapper.java

@@ -9,4 +9,7 @@ import java.util.Map;
 public interface IAccountProvider {
     public User login(String account, String password);
     public PageBean getList(int page, int pageSize, Map<String,Object> query);
+    public void unableUser(long id);
+    public User findUser(long id);
+    public void update(User user);
 }

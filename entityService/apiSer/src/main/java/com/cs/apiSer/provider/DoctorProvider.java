@@ -4,7 +4,6 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.alibaba.fastjson.JSON;
 import com.cs.api.provider.IDoctorProvider;
 import com.cs.apiSer.service.IDoctorService;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 
 

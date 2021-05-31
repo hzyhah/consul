@@ -1,9 +1,8 @@
 package com.cs.apiSer.service;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.cs.apiSer.vo.User;
-import com.cs.common.PageBean;
 
 import java.util.Map;
 
@@ -17,7 +16,7 @@ import java.util.Map;
  */
 public interface IUserService extends IService<User> {
     public User login(String account,String password);
-    public User saveCascade(User user);
-    public PageBean getList(int page, int pageSize, Map<String,Object> query);
+////    public User saveCascade(User user);
+    public IPage<User> getList(int page, int pageSize, Map<String,Object> query);
 
 }

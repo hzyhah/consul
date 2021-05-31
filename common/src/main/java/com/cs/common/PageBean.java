@@ -1,7 +1,14 @@
 package com.cs.common;
 
+
+
+
+import org.springframework.beans.BeanUtils;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,47 +59,22 @@ public class PageBean implements Serializable {
         this.pageSize = pageSize;
     }
 
-    /** *//**
-     * 初始化分页信息
-     */
-    public void init(){
-        this.isFirstPage = isFirstPage();
-        this.isLastPage = isLastPage();
-        this.hasPreviousPage = isHasPreviousPage();
-        this.hasNextPage = isHasNextPage();
+    public static Map returnJSON(PageBean pageBean,List list){
+        Map map= new HashMap<>();
+        map.put("totalPage",pageBean.getTotalPage());
+        map.put("hasNext",pageBean.isHasNextPage());
+        map.put("firstPage",pageBean.isFirstPage());
+        map.put("hasPre",pageBean.isHasPreviousPage());
+        map.put("rows",pageBean.getAllRow());
+        map.put("currentPage",pageBean.getCurrentPage());
+        map.put("lastPage",pageBean.isLastPage());
+        if (list==null){
+            map.put("records", pageBean.getList());
+        }else
+            map.put("records",list);
+        //map.put("datas", list==null?pageBean.getList():list);
+        return map;
     }
-
-    public static PageBean init(Object obj){
-        Class<?> objClass = obj.getClass();
-
-        Field[] fileds = objClass.getDeclaredFields();
-        PageBean pageBean = new PageBean();
-        try{
-            for (int i = 0; i < fileds.length; i++) {
-                Field filed = fileds[i];
-                filed.setAccessible(true);
-                if (filed.getName().equals("total")) {
-                    pageBean.setAllRow(filed.getLong(obj));
-                }
-
-                if (filed.getName().equals("current")) {
-                    pageBean.setCurrentPage(filed.getLong(obj));
-                }
-
-                if (filed.getName().equals("size")) {
-                    pageBean.setPageSize(filed.getLong(obj));
-                }
-
-                if (filed.getName().equals("records")) {
-                    pageBean.setList((List) filed.get(obj));
-                }
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-        return pageBean;
-    }
-
 
     /** *//**
      * 以下判断页的信息,只需getter方法(is方法)即可

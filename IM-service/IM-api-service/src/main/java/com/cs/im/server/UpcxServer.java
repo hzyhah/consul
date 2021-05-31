@@ -3,7 +3,6 @@ package com.cs.im.server;
 import com.cs.im.handle.ChatSendHandle;
 import com.cs.im.handle.LoginRequestHandle;
 import com.cs.im.handle.ProcotoFrameDecoder;
-import com.cs.im.handle.WebSocketChannelInitializer;
 import com.cs.im.message.MesssageCodecSharable;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
@@ -57,10 +56,14 @@ public class UpcxServer {
             /*.childHandler(new WebSocketChannelInitializer());*/
 
             ChannelFuture channelFuture = serverBootstrap.bind(port).sync();
+            /*if (channelFuture.isSuccess()){
+                 serverSocketChannel = (ServerSocketChannel) channelFuture.channel();
+
+            }*/
             ChannelFuture closeFuture = channelFuture.channel().closeFuture().sync();
         }catch (Exception e){
             e.printStackTrace();
-            log.error(e.getMessage());
+
         }finally {
             boss.shutdownGracefully();
             worker.shutdownGracefully();

@@ -1,2 +1,3 @@
-com/cs/consulApp/ConsulAppApplication.class
-com/cs/consulApp/controller/DoctorController.class
+com\cs\consulApp\ConsulAppApplication.class
+com\cs\consulApp\controller\DoctorController.class
+com\cs\consulApp\feign\AuthFeign.class

@@ -1,10 +1,18 @@
 package com.cs.im.handle;
 
 
+import com.alibaba.fastjson.JSON;
 import io.netty.channel.*;
+import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.websocketx.*;
 import io.netty.util.CharsetUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Description WebSocketClientHandler
@@ -21,6 +29,9 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
      */
     private ChannelPromise handshakeFuture;
 
+    @Autowired
+    Jedis jedis;
+
     public WebSocketClientHandler(WebSocketClientHandshaker handshaker) {
         this.handshaker = handshaker;
     }
@@ -32,7 +43,10 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
 
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("client 已激活");
         handshaker.handshake(ctx.channel());
+        jedis.set("123",new String("123"));
+
     }
 
     @Override
@@ -51,6 +65,29 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
         handshakeFuture = ctx.newPromise();
     }
 
+
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+        //首次连接是FullHttpRequest，处理参数 by zhengkai.blog.csdn.net
+        if (null != msg && msg instanceof FullHttpRequest) {
+            FullHttpRequest request = (FullHttpRequest) msg;
+            String uri = request.uri();
+
+            Map paramMap=getUrlParams(uri);
+            System.out.println("接收到的参数是："+ JSON.toJSONString(paramMap));
+            //如果url包含参数，需要处理
+            if(uri.contains("?")){
+                String newUri=uri.substring(0,uri.indexOf("?"));
+                System.out.println(newUri);
+                request.setUri(newUri);
+            }
+
+        }else if(msg instanceof TextWebSocketFrame){
+            //正常的TEXT消息类型
+            TextWebSocketFrame frame=(TextWebSocketFrame)msg;
+            System.out.println("客户端收到服务器数据：" +frame.text());
+        }
+        super.channelRead(ctx,msg);
+    }
     /**
      * 读取数据
      *
@@ -67,6 +104,7 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
                 handshaker.finishHandshake(ch, (FullHttpResponse) msg);
                 System.out.println("完成连接");
                 handshakeFuture.setSuccess();
+
             } catch (WebSocketHandshakeException e) {
                 System.out.println("握手连接失败");
                 handshakeFuture.setFailure(e);
@@ -80,6 +118,8 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
                     "Unexpected FullHttpResponse (getStatus=" + response.status() +
                             ", content=" + response.content().toString(CharsetUtil.UTF_8) + ')');
         }
+
+        System.out.println("!!!!!!!!!!!!!!!!!!");
 
         //处理websocket报文
         WebSocketFrame frame = (WebSocketFrame) msg;
@@ -101,5 +141,25 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
             handshakeFuture.setFailure(cause);
         }
         ctx.close();
+    }
+
+    private static Map getUrlParams(String url){
+        Map<String,String> map = new HashMap<>();
+        url = url.replace("?",";");
+        if (!url.contains(";")){
+            return map;
+        }
+        if (url.split(";").length > 0){
+            String[] arr = url.split(";")[1].split("&");
+            for (String s : arr){
+                String key = s.split("=")[0];
+                String value = s.split("=")[1];
+                map.put(key,value);
+            }
+            return  map;
+
+        }else{
+            return map;
+        }
     }
 }

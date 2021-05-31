@@ -1,0 +1,12 @@
+com\nettyUp\storage\table\ChannelUserInfo.class
+com\nettyUp\storage\config\JedisConfig.class
+com\nettyUp\storage\RedisStorage.class
+com\nettyUp\exception\NettyUpException.class
+com\nettyUp\channel\proxy\ChannelFutureProxy.class
+com\nettyUp\storage\table\NodeRegisterInfo.class
+com\nettyUp\bootstrap\NettyUpNode.class
+com\nettyUp\sequence\IdWorker.class
+com\nettyUp\session\RemoteSession.class
+com\nettyUp\storage\table\NodeChannelsInfo.class
+com\nettyUp\upRegister\NettyUpReport.class
+com\nettyUp\storage\StorageTools.class

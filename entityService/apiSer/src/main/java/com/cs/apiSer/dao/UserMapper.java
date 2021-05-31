@@ -17,8 +17,9 @@ import org.apache.ibatis.mapping.FetchType;
  * @since 2021-04-18
  */
 public interface UserMapper extends BaseMapper<User> {
-    @Select("select * from cs_user ${ew.sqlSegment} ")
+    @Select("select * from cs_user ${ew.customSqlSegment} ")
     @Results({
+            @Result(column="id",property="id"),
             @Result(column="id",property="roles",
                     many=@Many(
                             select="com.cs.apiSer.dao.RoleMapper.getListByUId",fetchType = FetchType.LAZY

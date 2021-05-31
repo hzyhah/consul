@@ -30,8 +30,8 @@ import java.net.URI;
  * @Date 2020/5/25 10:47
  */
 public class WebSocketClient {
-    public static final String URL = System.getProperty("url", "wss://stream.binance.com:9443/ws/BNBBTC@kline_1m");
-    public static final String SURL = System.getProperty("url", "ws://127.0.0.1:8843/websocket");
+    /*public static final String URL = System.getProperty("url", "wss://stream.binance.com:9443/ws/BNBBTC@kline_1m");*/
+    public static final String URL = System.getProperty("url", "ws://127.0.0.1:9091/ws");
 
     public static void main(String[] args) throws Exception {
         URI uri = new URI(URL);

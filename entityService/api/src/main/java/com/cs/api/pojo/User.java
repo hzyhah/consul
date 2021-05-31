@@ -1,6 +1,7 @@
 package com.cs.api.pojo;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -25,10 +26,15 @@ public class User implements Serializable {
 
     public String nickName;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING)
     public Long id;
 
     public Date addTime;
 
+    public String password;
+
     public String account;
+
+    public Boolean deleteStatus = false;
 
 }

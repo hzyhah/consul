@@ -13,6 +13,8 @@
     <packaging>pom</packaging>
     <modules>
         <module>IM-api-service</module>
+        <module>nettyUP</module>
+        <module>nettyUP-client</module>
     </modules>
 
     <dependencies>

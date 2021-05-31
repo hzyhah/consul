@@ -127,7 +127,7 @@ public class MysqlGenerator {
 
         // 策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude(new String("cs_role,cs_auth").split(","));
+        strategy.setInclude(new String("access_auth").split(","));
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setSuperEntityClass("BaseEntity");

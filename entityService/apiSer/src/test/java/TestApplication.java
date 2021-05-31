@@ -1,3 +1,4 @@
+import com.alibaba.fastjson.JSON;
 import com.cs.apiSer.ApiSerApplication;
 import com.cs.apiSer.service.IRoleService;
 import com.cs.apiSer.service.IUserService;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.Date;
+import java.util.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = ApiSerApplication.class)
@@ -47,5 +48,24 @@ public class TestApplication {
         user.setPassword(MD5Util.getMd5("123456"));
         user.setSex(1);
         userService.save(user);
+    }
+
+    @Test
+    public void json() {
+
+        List list = new ArrayList();
+        Map map = new HashMap();
+        map.put("date", "2020/04/25 21:19:07");
+
+        Map map1 = new HashMap();
+        map1.put("text","起床不");
+        map.put("text",map1);
+        map.put("mine",false);
+        map.put("name","留恋人间不羡仙");
+        map.put("img","/image/one.jpeg");
+
+        list.add(map);
+
+        System.out.println(JSON.toJSONString(list));
     }
 }

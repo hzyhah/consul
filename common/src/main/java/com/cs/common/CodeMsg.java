@@ -10,10 +10,12 @@ public class CodeMsg {
      */
     public static CodeMsg ILLEGAL_REQUEST = new CodeMsg(-1,"非法请求");
     public static CodeMsg PARAMETER_ISNULL = new CodeMsg(-2,"输入参数为空");
+
     //授权 token 异常
     public static CodeMsg ILLEGAL_JTW = new CodeMsg(-3,"无效token");
-
-    public static CodeMsg SUCCESS = new CodeMsg(0,"success");
+    public static CodeMsg OUTOFDATE_JTW = new CodeMsg(-4,"token已超时");
+    public static CodeMsg NO_ACCESS_AUTH = new CodeMsg(-5,"无访问权限");
+    public static CodeMsg SUCCESS = new CodeMsg(1,"success");
     //业务错误
     public static CodeMsg LOGIN_FAILD = new CodeMsg(100001,"用户名或密码错误");
 

@@ -98,8 +98,8 @@ public class UpcxClient {
         }
 
         //发送一对一聊天
-        ChatSendMessage chatSendMessage = new ChatSendMessage(1,"你好！");
-        client.channel.writeAndFlush(chatSendMessage);
+       /* ChatSendMessage chatSendMessage = new ChatSendMessage(1,"你好！");
+        client.channel.writeAndFlush(chatSendMessage);*/
 
 
 
